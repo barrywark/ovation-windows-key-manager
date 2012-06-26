@@ -25,7 +25,7 @@ namespace Physion.Ovation.KeyRepositoryService
 
             repo.WriteKey(institution, group, product, key);    
 
-            Assert.Equal(key, ReadKey(institution, group, product));
+            Assert.Equal(key, ReadKey(repo, institution, group, product));
             
         }
 
@@ -81,10 +81,8 @@ namespace Physion.Ovation.KeyRepositoryService
         }
 
 
-        private string ReadKey(string institution, string group, string product)
+        private static string ReadKey(FileSystemKeyRepository repo, string institution, string group, string product)
         {
-            var repo = new FileSystemKeyRepository();
-
             var keyName = String.Format("key_{0}__{1}__{2}", institution, group, product);
 
             using(var stream = new FileStream(
