@@ -24,6 +24,7 @@ namespace Physion.Ovation.KeyRepositoryService
         public FileSystemKeyRepository(string repositoryFolder)
         {
             this.RepositoryPath = Path.Combine(repositoryFolder, "Physion", "Ovation", "keys");
+            this.random = new Random();
         }
 
 
@@ -49,15 +50,60 @@ namespace Physion.Ovation.KeyRepositoryService
             }
         }
 
-        public static byte[] EntropyBytes(string institution, string group, string product)
+        public const uint ENTROPY_BYTES = 16;
+
+        private readonly Random random;
+
+        /**
+         * TODO, this needs to be written to a side-car file, and OvationEncryption needs to read it from there.
+         * If the file doesn't exist, generate random bytes. If it does exist, read it from there.
+         */
+        public byte[] EntropyBytes(string institution, string group, string product)
         {
-            return BitConverter.GetBytes(KeyFileName(institution, group, product).GetHashCode());
+
+            var entropyFilePath = Path.Combine(RepositoryPath, EntropyFileName(institution, group, product));
+
+            if(!File.Exists(entropyFilePath))
+            {
+                if (!Directory.Exists(RepositoryPath))
+                {
+                    Directory.CreateDirectory(RepositoryPath);
+                }
+
+                var bytes = new byte[ENTROPY_BYTES];
+                random.NextBytes(bytes);
+                
+                using (var stream = new FileStream(entropyFilePath,
+                    FileMode.Create,
+                    FileAccess.Write))
+                {
+                    using (var writer = new BinaryWriter(stream))
+                    {
+                        writer.Write(bytes);
+                    }
+                }
+            }
+
+            using(var stream = new FileStream(entropyFilePath,
+                FileMode.Open,
+                FileAccess.Read))
+            {
+                using(var reader = new BinaryReader(stream))
+                {
+                    return reader.ReadBytes((int) stream.Length);
+                }
+            }
 
         }
 
         private static string KeyFileName(string institution, string group, string product)
         {
             return String.Format("key_{0}__{1}__{2}", institution, group, product);
+        }
+
+        private static string EntropyFileName(string institution, string group, string product)
+        {
+            return String.Format("entropy_{0}__{1}__{2}", institution, group, product);
         }
     }
 }

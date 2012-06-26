@@ -39,19 +39,52 @@ namespace Physion.Ovation.KeyRepositoryService
         }
 
         [Fact]
-        public void ShouldComputeSaltFromKeyName()
+        public void ShouldComputeDifferentEntropyForDifferentInstitutionAndGroup()
         {
             const string institution = "some inst";
             const string group = "group";
             const string product = "Ovation";
 
-            var keyName = String.Format("key_{0}__{1}__{2}", institution, group, product);
+            const string institution2 = "other inst";
+            const string group2 = "group2";
 
-            Assert.Equal(BitConverter.GetBytes(keyName.GetHashCode()), FileSystemKeyRepository.EntropyBytes(institution, group, product));
+            var repo = new FileSystemKeyRepository();
+
+            Assert.NotEqual(repo.EntropyBytes(institution2, group2, product), 
+                repo.EntropyBytes(institution, group, product));
         }
+
+        [Fact]
+        public void ShouldWriteEntropyToFile()
+        {
+            const string institution = "Some Institution";
+            const string group = "Some Group";
+            const string product = "Some Product";
+
+            var repo = new FileSystemKeyRepository();
+
+            var entropyBytes = repo.EntropyBytes(institution, group, product);
+
+            var entropyFileName = String.Format("entropy_{0}__{1}__{2}", institution, group, product);
+
+            using(var stream = new FileStream(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Physion", "Ovation", "keys", entropyFileName), 
+                FileMode.Open, 
+                FileAccess.Read)
+                )
+            {
+                using(var reader = new BinaryReader(stream))
+                {
+                    var fileBytes = reader.ReadBytes((int) stream.Length);
+                    Assert.Equal(entropyBytes, fileBytes);
+                }
+            }
+        }
+
 
         private string ReadKey(string institution, string group, string product)
         {
+            var repo = new FileSystemKeyRepository();
+
             var keyName = String.Format("key_{0}__{1}__{2}", institution, group, product);
 
             using(var stream = new FileStream(
@@ -63,7 +96,7 @@ namespace Physion.Ovation.KeyRepositoryService
                 {
                     var encryptedBytes = reader.ReadBytes((int) stream.Length);
                     var bytes = ProtectedData.Unprotect(encryptedBytes, 
-                        FileSystemKeyRepository.EntropyBytes(institution, group, product), 
+                        repo.EntropyBytes(institution, group, product), 
                         DataProtectionScope.CurrentUser);
 
                     return Encoding.UTF8.GetString(bytes);

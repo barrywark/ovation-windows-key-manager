@@ -25,6 +25,7 @@ namespace KeyManager
 
             //Config via App.config
             _serviceHost = new ServiceHost(typeof(FileSystemKeyRepository));
+            //TODO set Authorization.ServiceAuthorizationManager to set auth policy
 
             try
             {
