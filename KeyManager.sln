@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{376020
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "KeyManagerInstaller", "KeyManagerInstaller\KeyManagerInstaller.wixproj", "{603450D2-43D9-4250-AC63-10BB85E39827}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,16 @@ Global
 		{2A9BABAB-04A7-4EF2-A99B-0F45C51316BF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{2A9BABAB-04A7-4EF2-A99B-0F45C51316BF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{2A9BABAB-04A7-4EF2-A99B-0F45C51316BF}.Release|x86.ActiveCfg = Release|Any CPU
+		{603450D2-43D9-4250-AC63-10BB85E39827}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{603450D2-43D9-4250-AC63-10BB85E39827}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{603450D2-43D9-4250-AC63-10BB85E39827}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{603450D2-43D9-4250-AC63-10BB85E39827}.Debug|x86.ActiveCfg = Debug|x86
+		{603450D2-43D9-4250-AC63-10BB85E39827}.Debug|x86.Build.0 = Debug|x86
+		{603450D2-43D9-4250-AC63-10BB85E39827}.Release|Any CPU.ActiveCfg = Release|x86
+		{603450D2-43D9-4250-AC63-10BB85E39827}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{603450D2-43D9-4250-AC63-10BB85E39827}.Release|Mixed Platforms.Build.0 = Release|x86
+		{603450D2-43D9-4250-AC63-10BB85E39827}.Release|x86.ActiveCfg = Release|x86
+		{603450D2-43D9-4250-AC63-10BB85E39827}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

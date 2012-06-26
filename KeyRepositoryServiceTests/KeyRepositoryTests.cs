@@ -5,7 +5,6 @@ using System.Linq;
 using System.Security;
 using System.Security.Cryptography;
 using System.Text;
-using Physion.Ovation.KeyRepositoryService;
 using Xunit;
 
 namespace Physion.Ovation.KeyRepositoryService
