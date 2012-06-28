@@ -24,11 +24,15 @@ namespace KeyManager
                 var app = new KeyRepositoryApp();
                 app.Start();
 
-                string input = string.Empty;
-                Console.Write("KeyRepositoryApp Console started. Type 'Ctrl-Z then Return' to stop the application... ");
+                Console.Write("KeyRepositoryApp Console started. Type 'Return' to stop the application... ");
 
-                // Wait for the user to exit the application
-                while (input != null) input = Console.ReadLine();
+
+                var input = Console.ReadKey(true);
+                while(input.Key != ConsoleKey.Enter)
+                {
+                    Console.Beep();
+                    input = Console.ReadKey(true);
+                }
 
                 // Stop the application.
                 app.Stop();

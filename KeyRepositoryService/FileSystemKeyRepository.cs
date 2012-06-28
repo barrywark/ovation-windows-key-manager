@@ -28,7 +28,7 @@ namespace Physion.Ovation.KeyRepositoryService
         }
 
 
-        public void WriteKey(string institution, string @group, string product, string key)
+        public void WriteKey(string institution, string group, string product, string key)
         {
             var encryptedBytes = ProtectedData.Protect(Encoding.UTF8.GetBytes(key),
                 EntropyBytes(institution, group, product),
