@@ -45,20 +45,10 @@
   <wsdl:message name="IKeyRepository_WriteKey_OutputMessage">
     <wsdl:part name="parameters" element="tns:WriteKeyResponse" />
   </wsdl:message>
-  <wsdl:message name="IKeyRepository_Ping_InputMessage">
-    <wsdl:part name="parameters" element="tns:Ping" />
-  </wsdl:message>
-  <wsdl:message name="IKeyRepository_Ping_OutputMessage">
-    <wsdl:part name="parameters" element="tns:PingResponse" />
-  </wsdl:message>
   <wsdl:portType name="IKeyRepository">
     <wsdl:operation name="WriteKey">
       <wsdl:input wsaw:Action="http://tempuri.org/IKeyRepository/WriteKey" message="tns:IKeyRepository_WriteKey_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IKeyRepository/WriteKeyResponse" message="tns:IKeyRepository_WriteKey_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="Ping">
-      <wsdl:input wsaw:Action="http://tempuri.org/IKeyRepository/Ping" message="tns:IKeyRepository_Ping_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IKeyRepository/PingResponse" message="tns:IKeyRepository_Ping_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetNamedPipeBinding_IKeyRepository" type="tns:IKeyRepository">
@@ -67,15 +57,6 @@
     <soap12:binding transport="http://schemas.microsoft.com/soap/named-pipe" />
     <wsdl:operation name="WriteKey">
       <soap12:operation soapAction="http://tempuri.org/IKeyRepository/WriteKey" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Ping">
-      <soap12:operation soapAction="http://tempuri.org/IKeyRepository/Ping" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

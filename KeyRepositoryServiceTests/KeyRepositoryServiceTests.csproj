@@ -36,6 +36,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,12 +49,15 @@
   <ItemGroup>
     <Compile Include="KeyRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceAuthorizationTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\KeyManager\KeyManagerWindowsService.csproj">
+      <Project>{01E8B57C-9062-41C1-A0AB-6F1E4A7AB44F}</Project>
+      <Name>KeyManagerWindowsService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KeyRepositoryService\KeyRepositoryService.csproj">
       <Project>{E83018C3-A767-43A3-85C2-28EAA08D574C}</Project>
       <Name>KeyRepositoryService</Name>

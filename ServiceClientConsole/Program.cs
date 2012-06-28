@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using ServiceClientConsole.ServiceClientConsole;
+using ServiceClientConsole.ServiceReference1;
 
 namespace ServiceClientConsole
 {

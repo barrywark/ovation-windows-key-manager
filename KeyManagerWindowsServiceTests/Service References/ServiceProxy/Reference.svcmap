@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="08a6f277-f3aa-483b-bb07-6282bfee1510" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="0bd93a6d-6d6a-4381-990d-a94406c2457a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -21,9 +21,9 @@
     <MetadataSource Address="net.pipe://localhost/OvationKeyManager/service/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="776fb73e-03d2-4f7d-800e-fda5d2a1d04a" SourceId="1" SourceUrl="net.pipe://localhost/OvationKeyManager/service/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="584d018c-80d9-461b-883f-3c5e337ea24c" SourceId="1" SourceUrl="net.pipe://localhost/OvationKeyManager/service/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="7d3aeefa-f864-4350-8f28-fffaa952201d" SourceId="1" SourceUrl="net.pipe://localhost/OvationKeyManager/service/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="a1d7d4f9-83af-47a7-bb83-aaa81512ee2c" SourceId="1" SourceUrl="net.pipe://localhost/OvationKeyManager/service/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="7018eca0-d92e-4071-a326-d3946aff4ae7" SourceId="1" SourceUrl="net.pipe://localhost/OvationKeyManager/service/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="c396bc19-4f20-4df6-820a-fad288d608c6" SourceId="1" SourceUrl="net.pipe://localhost/OvationKeyManager/service/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

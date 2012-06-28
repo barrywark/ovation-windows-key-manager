@@ -12,33 +12,48 @@ using Physion.Ovation.KeyRepositoryService;
 
 namespace KeyManager
 {
-    internal class KeyRepositoryApp
+
+    public class KeyRepositoryApp
     {
 
-        private ServiceHost _serviceHost = null;
+        public ServiceHost ServiceHost { get; private set; }
+
+        //public for testing
+        private ServiceAuthorizationManager AuthorizationManager { get; set; }
+
+        public KeyRepositoryApp() : this(new KeyRepositoryAuthorizationManager())
+        {
+        }
+
+        public KeyRepositoryApp(ServiceAuthorizationManager manager)
+        {
+            AuthorizationManager = manager;
+        }
 
         public void Start()
         {
             // start WCF host via self host
             //http://msdn.microsoft.com/en-us/library/ms730935
 
-            if (_serviceHost != null)
+            if (ServiceHost != null)
             {
-                _serviceHost.Close();
+                ServiceHost.Close();
             }
 
             //Config via App.config
-            _serviceHost = new ServiceHost(typeof (FileSystemKeyRepository));
-            _serviceHost.Authorization.ServiceAuthorizationManager = new KeyRepositoryAuthorizationManager();
+            ServiceHost = new ServiceHost(typeof (FileSystemKeyRepository));
+
+            Debug.Assert(AuthorizationManager != null, "AuthorizationManager != null");
+            ServiceHost.Authorization.ServiceAuthorizationManager = AuthorizationManager;
 
             try
             {
-                _serviceHost.Open();
+                ServiceHost.Open();
             }
             catch (CommunicationException ce)
             {
                 Console.WriteLine("Unable to start WCF service: {0}", ce.Message);
-                _serviceHost.Abort();
+                ServiceHost.Abort();
             }
         }
 
@@ -46,15 +61,15 @@ namespace KeyManager
         {
             try
             {
-                if (_serviceHost.State != CommunicationState.Closed)
+                if (ServiceHost.State != CommunicationState.Closed)
                 {
-                    _serviceHost.Close();
+                    ServiceHost.Close();
                 }
             }
             catch (CommunicationException ce)
             {
                 Console.WriteLine("Unable to stop WCF service: {0}", ce.Message);
-                _serviceHost.Abort();
+                ServiceHost.Abort();
             }
         }
     }

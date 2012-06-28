@@ -18,6 +18,8 @@ Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "KeyManagerInstaller", "KeyM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceClientConsole", "ServiceClientConsole\ServiceClientConsole.csproj", "{8414A594-F2FA-4C3D-A104-8F75B6DE5BD9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyManagerWindowsServiceTests", "KeyManagerWindowsServiceTests\KeyManagerWindowsServiceTests.csproj", "{EBAC1BBE-8AD2-4EC5-8CB9-417011A9A545}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,16 @@ Global
 		{8414A594-F2FA-4C3D-A104-8F75B6DE5BD9}.Release|Mixed Platforms.Build.0 = Release|x86
 		{8414A594-F2FA-4C3D-A104-8F75B6DE5BD9}.Release|x86.ActiveCfg = Release|x86
 		{8414A594-F2FA-4C3D-A104-8F75B6DE5BD9}.Release|x86.Build.0 = Release|x86
+		{EBAC1BBE-8AD2-4EC5-8CB9-417011A9A545}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBAC1BBE-8AD2-4EC5-8CB9-417011A9A545}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBAC1BBE-8AD2-4EC5-8CB9-417011A9A545}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{EBAC1BBE-8AD2-4EC5-8CB9-417011A9A545}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{EBAC1BBE-8AD2-4EC5-8CB9-417011A9A545}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EBAC1BBE-8AD2-4EC5-8CB9-417011A9A545}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBAC1BBE-8AD2-4EC5-8CB9-417011A9A545}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBAC1BBE-8AD2-4EC5-8CB9-417011A9A545}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{EBAC1BBE-8AD2-4EC5-8CB9-417011A9A545}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{EBAC1BBE-8AD2-4EC5-8CB9-417011A9A545}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
