@@ -33,6 +33,7 @@
             // 
             // keyManagerSerivceProcessInstaller
             // 
+            this.keyManagerSerivceProcessInstaller.Account = System.ServiceProcess.ServiceAccount.LocalService;
             this.keyManagerSerivceProcessInstaller.Password = null;
             this.keyManagerSerivceProcessInstaller.Username = null;
             // 
