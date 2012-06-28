@@ -21,14 +21,14 @@ namespace KeyManager
         //public for testing
         private ServiceAuthorizationManager AuthorizationManager { get; set; }
 
-        private string EventSource { get; set; }
+        private EventLog Log { get; set; }
 
         public KeyRepositoryApp()
             : this(new KeyRepositoryAuthorizationManager(), null)
         {
         }
 
-        public KeyRepositoryApp(string eventSource) : this(new KeyRepositoryAuthorizationManager(), eventSource)
+        public KeyRepositoryApp(EventLog eventSource) : this(new KeyRepositoryAuthorizationManager(), eventSource)
         {
         }
 
@@ -38,13 +38,10 @@ namespace KeyManager
         {
         }
 
-        public KeyRepositoryApp(ServiceAuthorizationManager manager, string eventSource)
+        public KeyRepositoryApp(ServiceAuthorizationManager manager, EventLog eventSource)
         {
             AuthorizationManager = manager;
-            EventSource = eventSource;
-
-            if(!EventLog.SourceExists(EventSource))
-				EventLog.CreateEventSource(EventSource, "Application");
+            Log = eventSource;
         }
 
         public void Start()
@@ -70,9 +67,9 @@ namespace KeyManager
             catch (CommunicationException ce)
             {
                 Console.WriteLine("Unable to start WCF service: {0}", ce.Message);
-                if(EventSource != null)
+                if(Log != null)
                 {
-                    EventLog.WriteEntry(EventSource, ce.Message);
+                    Log.WriteEntry(ce.Message);
                 }
                 ServiceHost.Abort();
             }
@@ -90,9 +87,9 @@ namespace KeyManager
             catch (CommunicationException ce)
             {
                 Console.WriteLine("Unable to stop WCF service: {0}", ce.Message);
-                if (EventSource != null)
+                if (Log != null)
                 {
-                    EventLog.WriteEntry(EventSource, ce.Message);
+                    Log.WriteEntry(ce.Message);
                 }
                 ServiceHost.Abort();
             }

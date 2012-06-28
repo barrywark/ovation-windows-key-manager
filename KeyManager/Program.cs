@@ -7,10 +7,16 @@ using System.Text;
 
 namespace KeyManager
 {
-    static class Program
+    static class NativeMethods
     {
+
         [DllImport("kernel32.dll")]
         public static extern Boolean AllocConsole();
+
+    }
+
+    static class Program
+    {
 
         /// <summary>
         /// The main entry point for the application.
@@ -19,7 +25,7 @@ namespace KeyManager
         {
             if (args.Length > 0 && args[0].ToLower() == "/console")
             {
-                AllocConsole();
+                NativeMethods.AllocConsole();
 
                 var app = new KeyRepositoryApp();
                 app.Start();
