@@ -17,7 +17,7 @@ namespace ServiceClientConsole
 
             Console.WriteLine("Writing key...");
             km.WriteKey("Service", "Client", "Awesome", "some-key");
-            Console.WriteLine("Done. Hit 'Return' to exit...");
+            Console.WriteLine("  Done. Hit 'Return' to exit...");
 
             Console.ReadKey();
         }

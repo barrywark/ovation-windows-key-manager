@@ -16,11 +16,14 @@ namespace KeyManager
         public KeyManagerWindowsService()
         {
             InitializeComponent();
-            _app = new KeyRepositoryApp();
+            _app = new KeyRepositoryApp(_eventSource);
         }
+
+        private const string _eventSource = "OvationKeyManager";
 
         protected override void OnStart(string[] args)
         {
+            EventLog.WriteEntry(_eventSource, "Starting service");
             _app.Start();
         }
 

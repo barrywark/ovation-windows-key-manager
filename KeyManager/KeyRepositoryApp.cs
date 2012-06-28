@@ -21,13 +21,30 @@ namespace KeyManager
         //public for testing
         private ServiceAuthorizationManager AuthorizationManager { get; set; }
 
-        public KeyRepositoryApp() : this(new KeyRepositoryAuthorizationManager())
+        private string EventSource { get; set; }
+
+        public KeyRepositoryApp()
+            : this(new KeyRepositoryAuthorizationManager(), null)
         {
         }
 
+        public KeyRepositoryApp(string eventSource) : this(new KeyRepositoryAuthorizationManager(), eventSource)
+        {
+        }
+
+
         public KeyRepositoryApp(ServiceAuthorizationManager manager)
+            : this(manager, null)
+        {
+        }
+
+        public KeyRepositoryApp(ServiceAuthorizationManager manager, string eventSource)
         {
             AuthorizationManager = manager;
+            EventSource = eventSource;
+
+            if(!EventLog.SourceExists(EventSource))
+				EventLog.CreateEventSource(EventSource, "Application");
         }
 
         public void Start()
@@ -41,7 +58,7 @@ namespace KeyManager
             }
 
             //Config via App.config
-            ServiceHost = new ServiceHost(typeof (FileSystemKeyRepository));
+            ServiceHost = new ServiceHost(typeof(FileSystemKeyRepository));
 
             Debug.Assert(AuthorizationManager != null, "AuthorizationManager != null");
             ServiceHost.Authorization.ServiceAuthorizationManager = AuthorizationManager;
@@ -53,6 +70,10 @@ namespace KeyManager
             catch (CommunicationException ce)
             {
                 Console.WriteLine("Unable to start WCF service: {0}", ce.Message);
+                if(EventSource != null)
+                {
+                    EventLog.WriteEntry(EventSource, ce.Message);
+                }
                 ServiceHost.Abort();
             }
         }
@@ -69,6 +90,10 @@ namespace KeyManager
             catch (CommunicationException ce)
             {
                 Console.WriteLine("Unable to stop WCF service: {0}", ce.Message);
+                if (EventSource != null)
+                {
+                    EventLog.WriteEntry(EventSource, ce.Message);
+                }
                 ServiceHost.Abort();
             }
         }
@@ -79,7 +104,7 @@ namespace KeyManager
 
         protected override bool CheckAccessCore(OperationContext operationContext)
         {
-            if(!base.CheckAccessCore(operationContext))
+            if (!base.CheckAccessCore(operationContext))
                 return false;
 
             Debug.Assert(operationContext.ServiceSecurityContext.WindowsIdentity != null, "operationContext.ServiceSecurityContext.WindowsIdentity != null");
