@@ -45,6 +45,24 @@
       <Name>WixUIExtension</Name>
     </WixExtension>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KeyManager\KeyManagerWindowsService.csproj">
+      <Name>KeyManagerWindowsService</Name>
+      <Project>{01e8b57c-9062-41c1-a0ab-6f1e4a7ab44f}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\KeyRepositoryService\KeyRepositoryService.csproj">
+      <Name>KeyRepositoryService</Name>
+      <Project>{e83018c3-a767-43a3-85c2-28eaa08d574c}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
   <!--
 	To modify your build process, add your task inside one of the targets below and uncomment it.
