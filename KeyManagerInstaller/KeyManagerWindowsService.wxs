@@ -37,11 +37,20 @@
               Source="$(var.KeyRepositoryService.TargetPath)"
               KeyPath="yes"/>
       </Component>
+
+      <Component Id="C.KeyManagerServiceConfig"
+                 Guid="*">
+        <File Id="$(var.KeyManagerWindowsService.TargetName)$(var.KeyManagerWindowsService.TargetExt).config"
+              Name="$(var.KeyManagerWindowsService.TargetName)$(var.KeyManagerWindowsService.TargetExt).config"
+              Source="$(var.KeyManagerWindowsService.TargetDir)$(var.KeyManagerWindowsService.TargetName)$(var.KeyManagerWindowsService.TargetExt).config"
+              KeyPath="yes"/>
+      </Component>
     </DirectoryRef>
 
     <ComponentGroup Id="CG.KeyManagerService">
       <ComponentRef Id="C.KeyManagerService"/>
       <ComponentRef Id="C.KeyRepositoryService"/>
+      <ComponentRef Id="C.KeyManagerServiceConfig"/>
     </ComponentGroup>
 
   </Fragment>

@@ -108,7 +108,7 @@ namespace KeyManager
 
             // Allow access when client is a member of the local Administers group
             var windowsPrincipal = new WindowsPrincipal(operationContext.ServiceSecurityContext.WindowsIdentity);
-            return windowsPrincipal.IsInRole(WindowsBuiltInRole.Administrator);
+            return windowsPrincipal.IsInRole(WindowsBuiltInRole.Administrator) || Environment.UserInteractive;
 
             //Claims-based version
             /*
