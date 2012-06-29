@@ -70,13 +70,12 @@ namespace Physion.Ovation.KeyRepositoryService
                 FileMode.Open, 
                 FileAccess.Read)
                 )
+            using (var reader = new BinaryReader(stream))
             {
-                using(var reader = new BinaryReader(stream))
-                {
-                    var fileBytes = reader.ReadBytes((int) stream.Length);
-                    Assert.Equal(entropyBytes, fileBytes);
-                }
+                var fileBytes = reader.ReadBytes((int)stream.Length);
+                Assert.Equal(entropyBytes, fileBytes);
             }
+            
         }
 
 
@@ -88,17 +87,16 @@ namespace Physion.Ovation.KeyRepositoryService
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Physion", "Ovation", "keys", keyName), 
                 FileMode.Open, 
                 FileAccess.Read))
+            using (var reader = new BinaryReader(stream))
             {
-                using(var reader = new BinaryReader(stream))
-                {
-                    var encryptedBytes = reader.ReadBytes((int) stream.Length);
-                    var bytes = ProtectedData.Unprotect(encryptedBytes, 
-                        repo.EntropyBytes(institution, group, product), 
-                        DataProtectionScope.CurrentUser);
+                var encryptedBytes = reader.ReadBytes((int)stream.Length);
+                var bytes = ProtectedData.Unprotect(encryptedBytes,
+                    repo.EntropyBytes(institution, group, product),
+                    DataProtectionScope.CurrentUser);
 
-                    return Encoding.UTF8.GetString(bytes);
-                }
+                return Encoding.UTF8.GetString(bytes);
             }
+            
 
         }
     }
