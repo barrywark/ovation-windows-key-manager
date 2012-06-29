@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+    <DirectoryRef Id="OVATIONBIN">
+    <Component Id="C.KeyManagerService" 
+               Guid="*">
+      <File Id="KeyManager.exe" 
+            Name="KeyManager.exe" 
+            Source="KeyManager\bin\Release\KeyManager.exe" 
+            KeyPath="yes"/>
+      
+      <ServiceInstall
+        Id="S.KeyManager"
+        Type="ownProcess"
+        Vital="yes"
+        Name="OvationKeyManager"
+        DisplayName="Ovation Shared Encryption Key Manager"
+        Description="Ovation Shared Encryption Key Manager Service"
+        Start="auto"
+        Account="NT AUTHORITY\LOCAL SERVICE"
+        ErrorControl="normal"
+        Interactive="no">
+        <ServiceDependency Id="QSM"/>
+        <ServiceDependency Id="pdl"/>
+        <ServiceDependency Id="WHSTransportService"/>
+      </ServiceInstall>
+      
+      <ServiceControl Id="SC.KeyManager" 
+                      Start="install" 
+                      Stop="both" 
+                      Remove="uninstall" 
+                      Name="OvationKeyManager" 
+                      Wait="no" />
+      
+    </Component>
+    </DirectoryRef>
+
+    <ComponentGroup Id="CG.KeyManagerService">
+      <ComponentRef Id="C.KeyManagerService"/>
+    </ComponentGroup>
+    
+	</Fragment>
+</Wix>

@@ -18,24 +18,29 @@
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed."/>
 
-    <Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="ProgramFilesFolder">
-				<Directory Id="INSTALLLOCATION" Name="KeyManagerInstaller">
-					<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
-					<!-- <Component Id="ProductComponent" Guid="33d28b26-cb7b-4590-988e-7a2ac1d3a8bc"> -->
-						<!-- TODO: Insert files, registry keys, and other resources here. -->
-					<!-- </Component> -->
-				</Directory>
-			</Directory>
-		</Directory>
+    <!-- Property to detect an Ovation installation; should be repaired by repair/reinstall-->
+    <Property Id="OVATIONINSTALLED">
+      <RegistrySearch Id="OvationInstalled"
+                      Root="HKLM"
+                      Win64="$(var.Win64)"
+                      Key="Software\Physion\Ovation"
+                      Name="OvationKeyManagerInstalled"
+                      Type="raw"/>
+    </Property>
 
-		<Feature Id="ProductFeature" Title="KeyManagerInstaller" Level="1">
-			<!-- TODO: Remove the comments around this ComponentRef element and the Component above in order to add resources to this installer. -->
-			<!-- <ComponentRef Id="ProductComponent" /> -->
-			
-			<!-- Note: The following ComponentGroupRef is required to pull in generated authoring from project references. -->
-			<ComponentGroupRef Id="Product.Generated" />
-		</Feature>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="$(var.PlatformProgramFilesFolder)">
+        <Directory Id="PHYSIONINSTALLROOT" Name="Physion">
+          <Directory Id="OVATIONROOT" Name="Ovation">
+            
+            <Directory Id="OVATIONBIN" Name="bin" />
+            
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <FeatureRef Id="FE.KeyManager" />
 
     <UIRef Id="WixUI_Minimal"/>
     <UIRef Id="WixUI_ErrorProgressText"/>
