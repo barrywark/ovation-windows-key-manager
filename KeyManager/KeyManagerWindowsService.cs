@@ -29,7 +29,7 @@ namespace KeyManager
 
         protected override void OnStop()
         {
-            _app.Stop();
+           _app.Stop();
         }
     }
 }
