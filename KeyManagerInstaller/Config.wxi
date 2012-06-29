@@ -2,12 +2,12 @@
 <Include>
   <!-- Product name as we want it to appear in Add/Remove Programs-->
   <?if $(var.Platform) = x64 ?>
-  <?define ProductName = "Ovation Scientific Data Management System Shared Encryption Key Manager (64 bit)" ?>
+  <?define ProductName = "Ovation Shared Encryption Key Manager (64 bit)" ?>
   <?define Win64 = "yes" ?>
   <?define PlatformProgramFilesFolder = "ProgramFiles64Folder" ?>
   <?define OvationUpgradeID = "{B81C0539-F8E1-4A0B-8E9A-94D052E0C5BE}"?>
   <?else ?>
-  <?define ProductName = "Ovation Scientific Data Management System Shared Encryption Key Manager" ?>
+  <?define ProductName = "Ovation Shared Encryption Key Manager" ?>
   <?define Win64 = "no" ?>
   <?define PlatformProgramFilesFolder = "ProgramFilesFolder" ?>
   <?define OvationUpgradeID = "{33B375EE-23E9-42A7-A283-32199DA69D02}"?>

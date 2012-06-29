@@ -8,7 +8,7 @@
             Name="KeyManager.exe" 
             Source="KeyManager\bin\Release\KeyManager.exe" 
             KeyPath="yes"/>
-      
+
       <ServiceInstall
         Id="S.KeyManager"
         Type="ownProcess"
@@ -17,13 +17,9 @@
         DisplayName="Ovation Shared Encryption Key Manager"
         Description="Ovation Shared Encryption Key Manager Service"
         Start="auto"
-        Account="NT AUTHORITY\LOCAL SERVICE"
+        Account="NT AUTHORITY\LocalService"
         ErrorControl="normal"
-        Interactive="no">
-        <ServiceDependency Id="QSM"/>
-        <ServiceDependency Id="pdl"/>
-        <ServiceDependency Id="WHSTransportService"/>
-      </ServiceInstall>
+        Interactive="no" />
       
       <ServiceControl Id="SC.KeyManager" 
                       Start="install" 

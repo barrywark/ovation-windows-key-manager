@@ -18,6 +18,8 @@
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed."/>
 
+    <WixVariable Id="WixUILicenseRtf" Value="docs\EULA.rtf" />
+
     <!-- Property to detect an Ovation installation; should be repaired by repair/reinstall-->
     <Property Id="OVATIONINSTALLED">
       <RegistrySearch Id="OvationInstalled"
