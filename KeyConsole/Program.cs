@@ -63,7 +63,7 @@ namespace Physion.Ovation.KeyManager.KeyConsole
                 return;
             }
 
-            if (system_key && !Thread.CurrentPrincipal.IsInRole(WindowsBuiltInRole.Administrator.ToString()))
+            if (system_key && !IsUserAdministrator())
             {
                 
                 Console.WriteLine("Writing a key to the system (query server) key store requires administrator role.");
@@ -114,6 +114,28 @@ namespace Physion.Ovation.KeyManager.KeyConsole
                 input = Console.ReadKey(true);
             }
             return keyBuilder;
+        }
+
+        private static bool IsUserAdministrator()
+        {
+            //bool value to hold our return value
+            bool isAdmin;
+            try
+            {
+                //get the currently logged in user
+                WindowsIdentity user = WindowsIdentity.GetCurrent();
+                WindowsPrincipal principal = new WindowsPrincipal(user);
+                isAdmin = principal.IsInRole(WindowsBuiltInRole.Administrator);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                isAdmin = false;
+            }
+            catch (Exception ex)
+            {
+                isAdmin = false;
+            }
+            return isAdmin;
         }
 
         static void ShowHelp(OptionSet p)
