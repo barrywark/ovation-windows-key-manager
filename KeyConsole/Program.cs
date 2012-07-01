@@ -51,6 +51,7 @@ namespace Physion.Ovation.KeyManager.KeyConsole
 
             if (institution == null)
             {
+                Console.Write("keyconsole: ");
                 Console.WriteLine("You must provide the licensed institution.");
                 Console.WriteLine("Try `keyconsole --help' for more information.");
                 return;
@@ -58,6 +59,7 @@ namespace Physion.Ovation.KeyManager.KeyConsole
 
             if (group == null)
             {
+                Console.Write("keyconsole: ");
                 Console.WriteLine("You must provide the licensed group.");
                 Console.WriteLine("Try `keyconsole --help' for more information.");
                 return;
@@ -65,7 +67,7 @@ namespace Physion.Ovation.KeyManager.KeyConsole
 
             if (system_key && !IsUserAdministrator())
             {
-                
+                Console.Write("keyconsole: ");                
                 Console.WriteLine("Writing a key to the system (query server) key store requires administrator role.");
                 Console.WriteLine("Run keyconsole as Administrator.");
                 return;
@@ -83,6 +85,7 @@ namespace Physion.Ovation.KeyManager.KeyConsole
 
             if (!keyBuilder.ToString().Equals(keyBuilderComp.ToString()))
             {
+                Console.Write("keyconsole: ");
                 Console.WriteLine("Keys do not match. Keys have not been modified");
                 return;
             }
@@ -118,24 +121,21 @@ namespace Physion.Ovation.KeyManager.KeyConsole
 
         private static bool IsUserAdministrator()
         {
-            //bool value to hold our return value
-            bool isAdmin;
             try
             {
                 //get the currently logged in user
-                WindowsIdentity user = WindowsIdentity.GetCurrent();
-                WindowsPrincipal principal = new WindowsPrincipal(user);
-                isAdmin = principal.IsInRole(WindowsBuiltInRole.Administrator);
+                var user = WindowsIdentity.GetCurrent();
+                var principal = new WindowsPrincipal(user);
+                return principal.IsInRole(WindowsBuiltInRole.Administrator);
             }
             catch (UnauthorizedAccessException ex)
             {
-                isAdmin = false;
+                return false;
             }
             catch (Exception ex)
             {
-                isAdmin = false;
+                return false;
             }
-            return isAdmin;
         }
 
         static void ShowHelp(OptionSet p)
