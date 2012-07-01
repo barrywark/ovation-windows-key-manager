@@ -3,6 +3,9 @@
 */obj/*
 packages/*/*
 
+# Packages
+Options.cs
+
 #ignore thumbnails created by windows
 Thumbs.db
 #Ignore files build by Visual Studio
