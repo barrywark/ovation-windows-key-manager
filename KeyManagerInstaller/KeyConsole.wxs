@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+    <DirectoryRef Id="OVATIONBIN">
+      <Component Id="C.KeyConsole"
+                 Guid="*">
+        <File Id="KeyConsole.exe"
+              Name="KeyConsole.exe"
+              Source="$(var.KeyConsole.TargetPath)"
+              KeyPath="yes"/>
+      </Component>
+
+      <Component Id="C.KeyConsoleConfig"
+                 Guid="*">
+        <File Id="$(var.KeyConsole.TargetName)$(var.KeyConsole.TargetExt).config"
+              Name="$(var.KeyConsole.TargetName)$(var.KeyConsole.TargetExt).config"
+              Source="$(var.KeyConsole.TargetDir)$(var.KeyConsole.TargetName)$(var.KeyConsole.TargetExt).config"
+              KeyPath="yes"/>
+      </Component>
+    </DirectoryRef>
+
+    <ComponentGroup Id="CG.KeyManagerConsole">
+      <ComponentRef Id="C.KeyConsole"/>
+      <ComponentRef Id="C.KeyConsoleConfig"/>
+    </ComponentGroup>
+	</Fragment>
+</Wix>

@@ -6,7 +6,7 @@
             Level="1">
 
       <ComponentGroupRef Id="CG.KeyManagerService" />
-<!--      <ComponentGroupRef Id="CG.KeyManagerApp" />-->
+      <ComponentGroupRef Id="CG.KeyManagerConsole" />
     </Feature>
 	</Fragment>
 </Wix>

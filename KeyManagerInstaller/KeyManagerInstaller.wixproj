@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Features.wxs" />
+    <Compile Include="KeyConsole.wxs" />
     <Compile Include="KeyManagerWindowsService.wxs" />
     <Compile Include="Product.wxs" />
   </ItemGroup>
@@ -46,6 +47,14 @@
     </WixExtension>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\KeyConsole\KeyConsole.csproj">
+      <Name>KeyConsole</Name>
+      <Project>{43815a8b-1d45-4e8d-84ee-c3029c2dd191}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
     <ProjectReference Include="..\KeyManager\KeyManagerWindowsService.csproj">
       <Name>KeyManagerWindowsService</Name>
       <Project>{01e8b57c-9062-41c1-a0ab-6f1e4a7ab44f}</Project>
