@@ -43,7 +43,7 @@ namespace KeyManagerWindowsServiceTests
                 const string product = "KeyManager";
 
 
-                var keyName = String.Format("key_{0}__{1}__{2}", institution, group, product);
+                var keyName = String.Format("{0}__{1}__{2}", institution, group, product);
                 var keyPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Physion", "Ovation", "keys", keyName);
 
                 if(File.Exists(keyPath))

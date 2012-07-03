@@ -98,7 +98,7 @@ namespace Physion.Ovation.KeyRepositoryService
 
         private static string KeyFileName(string institution, string group, string product)
         {
-            return String.Format("key_{0}__{1}__{2}", institution, group, product);
+            return String.Format("{0}__{1}__{2}", institution, group, product);
         }
 
         private static string EntropyFileName(string institution, string group, string product)
