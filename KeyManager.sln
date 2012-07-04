@@ -135,6 +135,7 @@ Global
 		{43815A8B-1D45-4E8D-84EE-C3029C2DD191}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{43815A8B-1D45-4E8D-84EE-C3029C2DD191}.Release|Mixed Platforms.Build.0 = Release|x86
 		{43815A8B-1D45-4E8D-84EE-C3029C2DD191}.Release|x64.ActiveCfg = Release|x86
+		{43815A8B-1D45-4E8D-84EE-C3029C2DD191}.Release|x64.Build.0 = Release|x86
 		{43815A8B-1D45-4E8D-84EE-C3029C2DD191}.Release|x86.ActiveCfg = Release|x86
 		{43815A8B-1D45-4E8D-84EE-C3029C2DD191}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
