@@ -17,7 +17,6 @@
           DisplayName="Ovation Shared Encryption Key Manager"
           Description="Ovation Shared Encryption Key Manager Service"
           Start="auto"
-          Account="NT AUTHORITY\LocalService"
           ErrorControl="normal"
           Interactive="no" />
 
