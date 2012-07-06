@@ -81,7 +81,7 @@ namespace Physion.Ovation.KeyRepositoryService
 
         private static string ReadKey(FileSystemKeyRepository repo, string institution, string group, string product)
         {
-            var keyName = String.Format("key_{0}__{1}__{2}", institution, group, product);
+            var keyName = String.Format("{0}__{1}__{2}", institution, group, product);
 
             using(var stream = new FileStream(
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Physion", "Ovation", "keys", keyName), 
