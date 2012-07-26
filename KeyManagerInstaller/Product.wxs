@@ -12,7 +12,8 @@
     
 		<Package InstallerVersion="200" 
              Compressed="yes" 
-             InstallScope="perMachine"/>
+             InstallScope="perMachine"
+             InstallPrivileges="elevated"/>
 
 		<Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
 
