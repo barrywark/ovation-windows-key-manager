@@ -12,7 +12,7 @@
     
 		<Package InstallerVersion="200" 
              Compressed="yes" 
-             Platform="$(var.Platform)"/>
+             InstallScope="perMachine"/>
 
 		<Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
 
